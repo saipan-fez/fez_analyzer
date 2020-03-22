@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenCvSharp4" Version="4.2.0.20200208" />
+    <PackageReference Include="OpenCvSharp4.runtime.win" Version="4.2.0.20200208" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FezAnalyzer.Entity\FezAnalyzer.Entity.csproj" />
+    <ProjectReference Include="..\FEZAnalyzer.ResultRecognize\FEZAnalyzer.ResultRecognize.csproj" />
+    <ProjectReference Include="..\FezAnalyzer.WarRecognize\FezAnalyzer.WarRecognize.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="katate.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="koori.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Score.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

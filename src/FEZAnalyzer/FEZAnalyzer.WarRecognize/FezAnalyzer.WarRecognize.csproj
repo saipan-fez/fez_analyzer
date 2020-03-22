@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Colourful" Version="2.0.4" />
+    <PackageReference Include="OpenCvSharp4" Version="4.2.0.20200208" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FEZAnalyzer.Entity\FEZAnalyzer.Entity.csproj" />
+    <ProjectReference Include="..\FEZAnalyzer.ResourceProvider\FEZAnalyzer.ResourceProvider.csproj" />
+  </ItemGroup>
+
+</Project>
