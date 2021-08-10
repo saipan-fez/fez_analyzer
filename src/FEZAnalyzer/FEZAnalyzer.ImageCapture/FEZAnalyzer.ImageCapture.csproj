@@ -9,11 +9,12 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FezAnalyzer.Entity\FezAnalyzer.Entity.csproj" />
+    <ProjectReference Include="..\FEZAnalyzer.Setting\FEZAnalyzer.Setting.csproj" />
   </ItemGroup>
 
 </Project>
