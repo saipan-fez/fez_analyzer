@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 [assembly: InternalsVisibleTo("FEZAnalyzer.PerformanceTest")]
 namespace FEZAnalyzer.ResultRecognize.NewUI
 {
-    internal class NewUiWarScoreRecognizer : IWarScoreRecognize
+    internal class NewUiWarScoreRecognizer
     {
         private NewUiWarScoreClipper newUiWarScoreClipper = new NewUiWarScoreClipper();
 
@@ -36,40 +36,46 @@ namespace FEZAnalyzer.ResultRecognize.NewUI
         private BuildingDestroyCountScanner buildingDestroyCountScanner = new BuildingDestroyCountScanner();
         private CrystalCountScanner crystalCountScanner = new CrystalCountScanner();
 
-        public WarScore Recognize(FezImage fezImage)
+        public bool TryRecognize(FezImage fezImage, out WarScore warScore)
         {
-            var warScore = new WarScore();
-
-            using (var warResultImage = newUiWarScoreClipper.Clip(fezImage))
+            using (var img = newUiWarScoreClipper.Clip(fezImage))
             {
-                warScore.記録日時 = DateTime.Now;
+                if (img == null)
+                {
+                    warScore = null;
+                    return false;
+                }
+
+                var w = new WarScore();
+                w.記録日時 = DateTime.Now;
                 Task.WaitAll(
-                    Task.Run(() => { warScore.勝敗 = warResultScanner.Scan(warResultImage); }),
-                    Task.Run(() => { warScore.参戦側 = sideScanner.Scan(warResultImage); }),
-                    Task.Run(() => { warScore.攻撃側国 = offenceCountryScanner.Scan(warResultImage); }),
-                    Task.Run(() => { warScore.防衛側国 = defenceCountryScanner.Scan(warResultImage); }),
-                    Task.Run(() => { warScore.戦争継続時間 = warTimeScanner.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.戦闘 = attackTotalScanner.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.領域 = regionTotalScanner.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.支援 = supportTotalScanner.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.PC与ダメージ = playerDamageDetailScanner.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.キルダメージボーナス = killDamasgeDetailScanner.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.召喚解除ボーナス = summonReleaseDetailScorer.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.建築与ダメージ = buildingDamageDetailScanner.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.領域破壊ボーナス = regionDestroyDetailScorer.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.領域ダメージボーナス = regionDamageDetailScanner.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.貢献度 = contributionDetailScanner.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.クリスタル運用ボーナス = crystalOperationDetailScanner.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.召喚行動ボーナス = summonActionDetailScanner.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.キル数 = killCountScanner.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.デッド数 = deadCountScanner.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.建築数 = buildingCountScanner.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.建築物破壊数 = buildingDestroyCountScanner.Scan(warResultImage) ?? throw new Exception(); }),
-                    Task.Run(() => { warScore.クリスタル採掘量 = crystalCountScanner.Scan(warResultImage) ?? throw new Exception(); })
+                    Task.Run(() => { w.勝敗 = warResultScanner.Scan(img); }),
+                    Task.Run(() => { w.参戦側 = sideScanner.Scan(img); }),
+                    Task.Run(() => { w.攻撃側国 = offenceCountryScanner.Scan(img); }),
+                    Task.Run(() => { w.防衛側国 = defenceCountryScanner.Scan(img); }),
+                    Task.Run(() => { w.戦争継続時間 = warTimeScanner.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.戦闘 = attackTotalScanner.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.領域 = regionTotalScanner.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.支援 = supportTotalScanner.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.PC与ダメージ = playerDamageDetailScanner.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.キルダメージボーナス = killDamasgeDetailScanner.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.召喚解除ボーナス = summonReleaseDetailScorer.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.建築与ダメージ = buildingDamageDetailScanner.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.領域破壊ボーナス = regionDestroyDetailScorer.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.領域ダメージボーナス = regionDamageDetailScanner.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.貢献度 = contributionDetailScanner.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.クリスタル運用ボーナス = crystalOperationDetailScanner.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.召喚行動ボーナス = summonActionDetailScanner.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.キル数 = killCountScanner.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.デッド数 = deadCountScanner.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.建築数 = buildingCountScanner.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.建築物破壊数 = buildingDestroyCountScanner.Scan(img) ?? throw new Exception(); }),
+                    Task.Run(() => { w.クリスタル採掘量 = crystalCountScanner.Scan(img) ?? throw new Exception(); })
                 );
+                warScore = w;
             }
 
-            return warScore;
+            return true;
         }
     }
 }

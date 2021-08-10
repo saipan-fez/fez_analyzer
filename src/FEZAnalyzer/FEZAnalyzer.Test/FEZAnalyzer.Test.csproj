@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FEZAnalyzer.ResultRecognize\FEZAnalyzer.ResultRecognize.csproj" />
+    <ProjectReference Include="..\FEZAnalyzer.Setting\FEZAnalyzer.Setting.csproj" />
     <ProjectReference Include="..\FEZAnalyzer.WarRecognize\FEZAnalyzer.WarRecognize.csproj" />
   </ItemGroup>
 

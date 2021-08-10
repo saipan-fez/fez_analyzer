@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Reactive" Version="4.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FEZAnalyzer.Common\FEZAnalyzer.Common.csproj" />
+    <ProjectReference Include="..\FEZAnalyzer.Entity\FEZAnalyzer.Entity.csproj" />
+    <ProjectReference Include="..\FEZAnalyzer.ImageCapture\FEZAnalyzer.ImageCapture.csproj" />
+    <ProjectReference Include="..\FEZAnalyzer.PerformanceTest\FEZAnalyzer.PerformanceTest.csproj" />
+    <ProjectReference Include="..\FEZAnalyzer.ResourceProvider\FEZAnalyzer.ResourceProvider.csproj" />
+    <ProjectReference Include="..\FEZAnalyzer.ResultRecognize\FEZAnalyzer.ResultRecognize.csproj" />
+    <ProjectReference Include="..\FEZAnalyzer.Setting\FEZAnalyzer.Setting.csproj" />
+    <ProjectReference Include="..\FEZAnalyzer.WarRecognize\FEZAnalyzer.WarRecognize.csproj" />
+  </ItemGroup>
+
+</Project>
