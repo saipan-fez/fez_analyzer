@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenCvSharp4" Version="4.2.0.20200208" />
+    <PackageReference Include="OpenCvSharp4" Version="4.5.3.20210725" />
   </ItemGroup>
 
 </Project>
