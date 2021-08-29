@@ -46,8 +46,10 @@ namespace FEZAnalyzer.ResultRecognize.NewUI
                     return false;
                 }
 
-                var w = new WarScore();
-                w.記録日時 = DateTime.Now;
+                var w = new WarScore
+                {
+                    記録日時 = DateTime.Now
+                };
                 Task.WaitAll(
                     Task.Run(() => { w.勝敗 = warResultScanner.Scan(img); }),
                     Task.Run(() => { w.参戦側 = sideScanner.Scan(img); }),

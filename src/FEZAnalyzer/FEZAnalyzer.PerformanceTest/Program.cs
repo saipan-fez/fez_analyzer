@@ -70,7 +70,7 @@ namespace FEZAnalyzer.PerformanceTest
                 for (int i = 0; i < count; i++)
                 {
                     var sw = Stopwatch.StartNew();
-                    recognizer.Recognize(img);
+                    recognizer.TryRecognize(img, out var warScore);
                     sw.Stop();
 
                     list.Add(sw.ElapsedMilliseconds);

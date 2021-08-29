@@ -4,7 +4,9 @@ using System.Threading.Tasks;
 using FEZAnalyzer.Entity;
 using FEZAnalyzer.ImageCapture;
 using FEZAnalyzer.ResultRecognize;
+using FEZAnalyzer.SkillCount;
 using FEZAnalyzer.WarRecognize;
+using Microsoft.Extensions.Logging;
 
 namespace FEZAnalyzer
 {
@@ -15,10 +17,10 @@ namespace FEZAnalyzer
 
         private readonly IWarRecognizer      _warRecognizer;
         private readonly IWarScoreRecognizer _warScoreRecognizer;
+        private readonly ISkillUseRecognizer _skillUseRecognizer;
         private readonly CaptureProvider     _captureProvider;
 
-        public Action<WarInfo> WarInfoUpdateAction;
-        public Action<WarScore> WarScoreUpdateAction;
+        private readonly ILogger<FEZAnalyzeSquence> _logger;
 
         public FEZAnalyzeSquence(
             IWarRecognizer warRecognizer,
@@ -57,7 +59,7 @@ namespace FEZAnalyzer
         public async Task<TimeSpan> ProcessAsync()
         {
             // ----------------------------------
-            // TODO: シーケンスの整理が必要 (戦争中にFOした場合なども考慮する)
+            // TODO: シーケンスの整理が必要 (戦争中にFOした場合/強制終了なども考慮する)
             // ----------------------------------
 
             var capture = await _captureProvider.GetCaptureAsync();
@@ -78,8 +80,12 @@ namespace FEZAnalyzer
 
             if (_warRecognizer.TryRecognize(fezImage, out WarInfo warInfo))
             {
-                // 戦争中
-                WarInfoUpdateAction?.Invoke(warInfo);
+                var usedSkill = _skillUseRecognizer.RecognizeUsedSkill(
+                    fezImage.TimeStamp,
+                    warInfo.Pow,
+                    warInfo.Skills,
+                    warInfo.PowDebuffs);
+
                 // TODO: スキルの使用解析
                 return WaitNextFrameTimeSpan;
             }

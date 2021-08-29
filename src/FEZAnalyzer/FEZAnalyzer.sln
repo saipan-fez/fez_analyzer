@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FEZAnalyzer.PerformanceTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FEZAnalyzer.Setting", "FEZAnalyzer.Setting\FEZAnalyzer.Setting.csproj", "{5FB8CB35-91FC-4A0D-9986-D70263B95480}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FEZAnalyzer", "FEZAnalyzer\FEZAnalyzer.csproj", "{5F23B0FE-6065-4F07-A0CC-157D68AD1B3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FEZAnalyzer", "FEZAnalyzer\FEZAnalyzer.csproj", "{5F23B0FE-6065-4F07-A0CC-157D68AD1B3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FEZAnalyzer.SkillCount", "FEZAnalyzer.SkillCount\FEZAnalyzer.SkillCount.csproj", "{BB14EFD8-675C-4FFF-9065-3D29EFF26909}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{5F23B0FE-6065-4F07-A0CC-157D68AD1B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F23B0FE-6065-4F07-A0CC-157D68AD1B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F23B0FE-6065-4F07-A0CC-157D68AD1B3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB14EFD8-675C-4FFF-9065-3D29EFF26909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB14EFD8-675C-4FFF-9065-3D29EFF26909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB14EFD8-675C-4FFF-9065-3D29EFF26909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB14EFD8-675C-4FFF-9065-3D29EFF26909}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

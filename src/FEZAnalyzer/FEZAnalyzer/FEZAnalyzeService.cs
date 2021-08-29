@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
@@ -125,14 +126,14 @@ namespace FEZAnalyzer
                 {
                     // 解析
                     var start  = stopwatch.ElapsedMilliseconds;
-                    var result = Analyze();
+                    //var result = Analyze();
                     var end    = stopwatch.ElapsedMilliseconds;
 
                     // 解析時間更新
                     processTimes.Add(end - start);
                     if (processTimes.Count > 100)
                     {
-                        ProcessTimeUpdated?.Invoke(this, new ProcessTimeUpdatedEventArgs(processTimes.Average()));
+                        //ProcessTimeUpdated?.Invoke(this, new ProcessTimeUpdatedEventArgs(processTimes.Average()));
                         processTimes.Clear();
                     }
 

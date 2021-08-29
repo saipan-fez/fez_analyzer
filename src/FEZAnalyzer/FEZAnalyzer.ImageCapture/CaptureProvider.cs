@@ -77,7 +77,7 @@ namespace FEZAnalyzer.ImageCapture
 
                 var setting = await SettingReader.ReadGlobalSettingAsync();
 
-                // TODO: 0/1以外の場合の挙動確認
+                // TODO: Fullscreenの値が 0 or 1 以外の場合の挙動確認
                 // TODO: GLOBAL.INIがない場合のデフォルト設定の挙動確認
 
                 // ウィンドウとフルスクリーンでキャプチャ方式が異なるため、
@@ -90,7 +90,7 @@ namespace FEZAnalyzer.ImageCapture
                 else
                 {
                     // TODO: フルスクリーン時のキャプチャ提供クラスの実装
-                    throw new NotImplementedException();
+                    throw new NotImplementedException("full screen mode capture is not developed.");
                     //_capture = new FullScreenModeImageCapture();
                 }
             }
